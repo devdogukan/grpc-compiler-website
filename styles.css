@@ -36,7 +36,50 @@ header {
   background-color: var(--secondary-color);
   color: var(--white);
   padding: 2rem 1rem;
+  position: relative;
   text-align: center;
+}
+
+.header-content {
+  position: relative;
+}
+
+.header-text {
+  text-align: center;
+  flex: 1;
+}
+
+.header-nav {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.header-nav ul {
+  list-style: none;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.header-nav a {
+  color: var(--white);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.header-nav a:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.header-nav .fab {
+  font-size: 1.2rem;
 }
 
 .badges {
@@ -49,6 +92,21 @@ header {
 
 .badges img {
   height: 20px;
+}
+
+/* Responsive Header */
+@media (max-width: 768px) {
+  .header-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .header-nav {
+    position: relative;
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+  }
 }
 
 /* Section Styles */
