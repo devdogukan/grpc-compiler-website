@@ -7,7 +7,7 @@ function copyCode(button) {
   textArea.select();
 
   try {
-    document.execCommand("copy");
+    navigator.clipboard.writeText(textArea.value);
     // Change button text temporarily
     const originalHTML = button.innerHTML;
     button.innerHTML = '<i class="fas fa-check"></i> Copied!';
