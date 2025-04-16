@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>gRPC Compiler - VS Code Extension</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <header>
+      <div class="container">
+        <h1>gRPC Compiler</h1>
+        <p>
+          A Visual Studio Code extension for compiling Protocol Buffers (.proto)
+          files to gRPC code in multiple programming languages
+        </p>
+        <div class="badges">
+          <img
+            src="https://github.com/devdogukan/grpc-compiler/workflows/Build%20&%20Test/badge.svg"
+            alt="Build & Test"
+          />
+          <img
+            src="https://img.shields.io/visual-studio-marketplace/v/devdogukan.grpc-compiler"
+            alt="Version"
+          />
+        </div>
+      </div>
+    </header>
+
+    <div class="container">
+      <section class="demo">
+        <h2>How it Works?</h2>
+        <img
+          src="public/how-to-work-compiler.gif"
+          alt="gRPC Compilation Demo"
+          sizes="100vw"
+          width="600"
+          height="400"
+        />
+        <p>
+          Right-click on any .proto file in the VS Code explorer and select
+          "Compile Proto for gRPC" to generate code in your desired language.
+        </p>
+      </section>
+
+      <section class="features">
+        <h2>Features</h2>
+        <p>
+          This extension allows you to easily compile .proto files to generate
+          gRPC client and server code directly from the VS Code explorer context
+          menu.
+        </p>
+        <p>
+          Simply right-click on any .proto file and select "Compile Proto for
+          gRPC" to generate code in your desired language.
+        </p>
+      </section>
+
+      <section class="tab-container">
+        <h2>Supported Languages</h2>
+        <div class="tabs">
+          <div class="tab active" data-tab="protoc">
+            <i class="fas fa-cogs"></i> Protocol Buffers Compiler
+          </div>
+          <div class="tab" data-tab="go"><i class="fab fa-golang"></i> Go</div>
+          <div class="tab" data-tab="python">
+            <i class="fab fa-python"></i> Python
+          </div>
+          <div class="tab" data-tab="java">
+            <i class="fab fa-java"></i> Java
+          </div>
+          <div class="tab" data-tab="ruby"><i class="fas fa-gem"></i> Ruby</div>
+          <div class="tab" data-tab="dart">
+            <i class="fab fa-dart-lang"></i> Dart
+          </div>
+        </div>
+
+        <div class="tab-content active" id="protoc">
+          <h3>Protocol Buffers Compiler (protoc)</h3>
+          <p>
+            The Protocol Buffers compiler is required for all supported
+            languages. Here's how to install it on different platforms:
+          </p>
+
+          <div class="install-steps">
+            <h4>Windows</h4>
+            <ul>
+              <li>
+                Download the pre-built binary from the
+                <a
+                  href="https://github.com/protocolbuffers/protobuf/releases"
+                  target="_blank"
+                  >Protocol Buffers GitHub releases</a
+                >
+              </li>
+              <li>
+                Extract the zip file and add the <code>bin</code> directory to
+                your PATH
+              </li>
+            </ul>
+
+            <h4>macOS</h4>
+            <p>Install using Homebrew:</p>
+            <div class="code-block-container">
+              <pre class="code-block"><code>brew install protobuf</code></pre>
+              <button
+                class="copy-btn"
+                onclick="copyCode(this)"
+                data-code="brew install protobuf"
+              >
+                <i class="fas fa-copy"></i> Copy
+              </button>
+            </div>
+
+            <h4>Linux</h4>
+            <p>Install using your package manager, for example on Ubuntu:</p>
+            <div class="code-block-container">
+              <pre
+                class="code-block"
+              ><code>sudo apt-get install -y protobuf-compiler</code></pre>
+              <button
+                class="copy-btn"
+                onclick="copyCode(this)"
+                data-code="sudo apt-get install -y protobuf-compiler"
+              >
+                <i class="fas fa-copy"></i> Copy
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-content" id="go">
+          <h3>Go</h3>
+          <p>Requirements for compiling Protocol Buffers to Go code:</p>
+
+          <div class="install-steps">
+            <h4>Protocol Buffers compiler (protoc)</h4>
+            <ul>
+              <li>Must be installed and available in your PATH</li>
+            </ul>
+
+            <h4>Go Plugin for Protocol Buffers (protoc-gen-go)</h4>
+            <p>Install using:</p>
+            <div class="code-block-container">
+              <pre
+                class="code-block"
+              ><code>go install google.golang.org/protobuf/cmd/protoc-gen-go@latest</code></pre>
+              <button
+                class="copy-btn"
+                onclick="copyCode(this)"
+                data-code="go install google.golang.org/protobuf/cmd/protoc-gen-go@latest"
+              >
+                <i class="fas fa-copy"></i> Copy
+              </button>
+            </div>
+
+            <h4>Go gRPC Plugin (protoc-gen-go-grpc)</h4>
+            <p>Install using:</p>
+            <div class="code-block-container">
+              <pre
+                class="code-block"
+              ><code>go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest</code></pre>
+              <button
+                class="copy-btn"
+                onclick="copyCode(this)"
+                data-code="go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest"
+              >
+                <i class="fas fa-copy"></i> Copy
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-content" id="python">
+          <h3>Python</h3>
+          <p>Requirements for compiling Protocol Buffers to Python code:</p>
+
+          <div class="install-steps">
+            <h4>Python 3.x</h4>
+            <ul>
+              <li>Must be installed and available in your PATH</li>
+            </ul>
+
+            <h4>gRPC tools</h4>
+            <p>Install using:</p>
+            <div class="code-block-container">
+              <pre
+                class="code-block"
+              ><code>pip install grpcio grpcio-tools</code></pre>
+              <button
+                class="copy-btn"
+                onclick="copyCode(this)"
+                data-code="pip install grpcio grpcio-tools"
+              >
+                <i class="fas fa-copy"></i> Copy
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-content" id="java">
+          <h3>Java</h3>
+          <p>Requirements for compiling Protocol Buffers to Java code:</p>
+
+          <div class="install-steps">
+            <h4>Java Development Kit (JDK)</h4>
+            <ul>
+              <li>Must be installed and available in your PATH</li>
+            </ul>
+
+            <h4>Protocol Buffers compiler (protoc)</h4>
+            <ul>
+              <li>Must be installed and available in your PATH</li>
+            </ul>
+
+            <h4>Maven or Gradle project with the following dependencies:</h4>
+            <p>For Maven (in pom.xml):</p>
+            <div class="code-block-container">
+              <pre class="code-block"><code>&lt;dependency&gt;
+    &lt;groupId&gt;com.google.protobuf&lt;/groupId&gt;
+    &lt;artifactId&gt;protobuf-java&lt;/artifactId&gt;
+    &lt;version&gt;3.21.7&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;io.grpc&lt;/groupId&gt;
+    &lt;artifactId&gt;grpc-protobuf&lt;/artifactId&gt;
+    &lt;version&gt;1.53.0&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;io.grpc&lt;/groupId&gt;
+    &lt;artifactId&gt;grpc-stub&lt;/artifactId&gt;
+    &lt;version&gt;1.53.0&lt;/version&gt;
+&lt;/dependency&gt;</code></pre>
+              <button
+                class="copy-btn"
+                onclick="copyCode(this)"
+                data-code="<dependency>
+                        <groupId>com.google.protobuf</groupId>
+                        <artifactId>protobuf-java</artifactId>
+                        <version>3.21.7</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>io.grpc</groupId>
+                        <artifactId>grpc-protobuf</artifactId>
+                        <version>1.53.0</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>io.grpc</groupId>
+                        <artifactId>grpc-stub</artifactId>
+                        <version>1.53.0</version>
+                    </dependency>"
+              >
+                <i class="fas fa-copy"></i> Copy
+              </button>
+            </div>
+
+            <p>For Gradle (in build.gradle):</p>
+            <div class="code-block-container">
+              <pre class="code-block"><code>dependencies {
+    implementation 'com.google.protobuf:protobuf-java:3.21.7'
+    implementation 'io.grpc:grpc-protobuf:1.53.0'
+    implementation 'io.grpc:grpc-stub:1.53.0'
+}</code></pre>
+              <button
+                class="copy-btn"
+                onclick="copyCode(this)"
+                data-code="dependencies {
+    implementation 'com.google.protobuf:protobuf-java:3.21.7'
+    implementation 'io.grpc:grpc-protobuf:1.53.0'
+    implementation 'io.grpc:grpc-stub:1.53.0'
+}"
+              >
+                <i class="fas fa-copy"></i> Copy
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-content" id="ruby">
+          <h3>Ruby</h3>
+          <p>Requirements for compiling Protocol Buffers to Ruby code:</p>
+
+          <div class="install-steps">
+            <h4>Ruby 2.5 or newer</h4>
+            <ul>
+              <li>Must be installed and available in your PATH</li>
+            </ul>
+
+            <h4>Protocol Buffers compiler (protoc)</h4>
+            <ul>
+              <li>Must be installed and available in your PATH</li>
+            </ul>
+
+            <h4>Ruby gRPC gems</h4>
+            <p>Install using:</p>
+            <div class="code-block-container">
+              <pre
+                class="code-block"
+              ><code>gem install grpc grpc-tools</code></pre>
+              <button
+                class="copy-btn"
+                onclick="copyCode(this)"
+                data-code="gem install grpc grpc-tools"
+              >
+                <i class="fas fa-copy"></i> Copy
+              </button>
+            </div>
+          </div>
+
+          <h4>Output</h4>
+          <p>The Ruby compiler generates the following files:</p>
+          <ul>
+            <li>
+              A <code>lib</code> directory in the same location as your .proto
+              file
+            </li>
+            <li>
+              Ruby service files for gRPC client and server implementations
+            </li>
+            <li>Ruby message classes for Protocol Buffer message types</li>
+          </ul>
+          <p>
+            The generated files follow Ruby naming conventions, converting
+            snake_case.proto files to snake_case Ruby files.
+          </p>
+        </div>
+
+        <div class="tab-content" id="dart">
+          <h3>Dart</h3>
+          <p>Requirements for compiling Protocol Buffers to Dart code:</p>
+
+          <div class="install-steps">
+            <h4>Dart SDK</h4>
+            <ul>
+              <li>Must be installed and available in your PATH</li>
+            </ul>
+
+            <h4>Protocol Buffers compiler (protoc)</h4>
+            <ul>
+              <li>Must be installed and available in your PATH</li>
+            </ul>
+
+            <h4>Dart protoc plugin</h4>
+            <p>Install using:</p>
+            <div class="code-block-container">
+              <pre
+                class="code-block"
+              ><code>dart pub global activate protoc_plugin</code></pre>
+              <button
+                class="copy-btn"
+                onclick="copyCode(this)"
+                data-code="dart pub global activate protoc_plugin"
+              >
+                <i class="fas fa-copy"></i> Copy
+              </button>
+            </div>
+          </div>
+
+          <h4>Output</h4>
+          <p>The Dart compiler generates the following files:</p>
+          <ul>
+            <li>
+              A <code>lib/src/generated</code> directory structure in the same
+              location as your .proto file
+            </li>
+            <li>Dart files for gRPC client and server implementations</li>
+            <li>Dart classes for Protocol Buffer message types</li>
+          </ul>
+          <p>
+            The generated files follow Dart naming conventions, converting
+            snake_case.proto files to snake_case.dart files.
+          </p>
+        </div>
+      </section>
+
+      <section class="usage">
+        <h2>How To Use</h2>
+        <ol>
+          <li>Open a project containing .proto files</li>
+          <li>Right-click on any .proto file in the explorer</li>
+          <li>Select "Compile Proto for gRPC" from the context menu</li>
+          <li>Choose the target language (Go, Python, Java, Ruby, or Dart)</li>
+          <li>
+            The compiler will generate the appropriate files in the same
+            directory as the .proto file
+          </li>
+        </ol>
+      </section>
+    </div>
+
+    <footer class="footer">
+      <div class="container">
+        <p>gRPC Compiler - VS Code Extension &copy; 2025</p>
+        <p>
+          Made by
+          <a href="https://github.com/devdogukan" target="_blank">devdogukan</a>
+        </p>
+        <p>
+          <a
+            href="https://marketplace.visualstudio.com/items?itemName=devdogukan.grpc-compiler"
+            target="_blank"
+            >Download from VS Code Marketplace</a
+          >
+        </p>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
