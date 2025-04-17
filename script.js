@@ -46,3 +46,8 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 });
+
+// Copyright year update in footer
+const currentYear = new Date().getFullYear();
+document.querySelector('#copyright').innerHTML = `gRPC Compiler - VS Code Extension &copy; ${currentYear}.`;
+
