@@ -194,6 +194,62 @@
               </button>
             </div>
           </div>
+
+          <h4>Proto File Structure for Go</h4>
+          <p>Your .proto file should include:</p>
+          <div class="code-block-container">
+            <pre class="code-block"><code>syntax = "proto3";
+
+option go_package = "example.com/packagename";  // Define the Go package
+
+package examplepackage;  // Define the proto package
+
+// Service definition
+service ExampleService {
+  rpc ExampleMethod (ExampleRequest) returns (ExampleResponse);
+}
+
+// Message definitions
+message ExampleRequest {
+  string input = 1;
+}
+
+message ExampleResponse {
+  string output = 1;
+}</code></pre>
+            <button
+              class="copy-btn"
+              onclick="copyCode(this)"
+              data-code='syntax = "proto3";
+
+option go_package = "example.com/packagename";  // Define the Go package
+
+package examplepackage;  // Define the proto package
+
+// Service definition
+service ExampleService {
+  rpc ExampleMethod (ExampleRequest) returns (ExampleResponse);
+}
+
+// Message definitions
+message ExampleRequest {
+  string input = 1;
+}
+
+message ExampleResponse {
+  string output = 1;
+}'
+            >
+              <i class="fas fa-copy"></i> Copy
+            </button>
+          </div>
+
+          <h4>Generated Output</h4>
+          <p>The compiler will generate:</p>
+          <ul>
+            <li><code>*.pb.go</code> files containing message type definitions</li>
+            <li><code>*_grpc.pb.go</code> files containing the client and server code</li>
+          </ul>
         </div>
 
         <div class="tab-content" id="python">
@@ -221,6 +277,58 @@
               </button>
             </div>
           </div>
+
+          <h4>Proto File Structure for Python</h4>
+          <p>Your .proto file should include:</p>
+          <div class="code-block-container">
+            <pre class="code-block"><code>syntax = "proto3";
+
+package examplepackage;  // Define the proto package
+
+// Service definition
+service ExampleService {
+  rpc ExampleMethod (ExampleRequest) returns (ExampleResponse);
+}
+
+// Message definitions
+message ExampleRequest {
+  string input = 1;
+}
+
+message ExampleResponse {
+  string output = 1;
+}</code></pre>
+            <button
+              class="copy-btn"
+              onclick="copyCode(this)"
+              data-code='syntax = "proto3";
+
+package examplepackage;  // Define the proto package
+
+// Service definition
+service ExampleService {
+  rpc ExampleMethod (ExampleRequest) returns (ExampleResponse);
+}
+
+// Message definitions
+message ExampleRequest {
+  string input = 1;
+}
+
+message ExampleResponse {
+  string output = 1;
+}'
+            >
+              <i class="fas fa-copy"></i> Copy
+            </button>
+          </div>
+
+          <h4>Generated Output</h4>
+          <p>The compiler will generate:</p>
+          <ul>
+            <li><code>*_pb2.py</code> files containing message type definitions</li>
+            <li><code>*_pb2_grpc.py</code> files containing the client and server code</li>
+          </ul>
         </div>
 
         <div class="tab-content" id="java">
@@ -260,20 +368,20 @@
                 class="copy-btn"
                 onclick="copyCode(this)"
                 data-code="<dependency>
-                        <groupId>com.google.protobuf</groupId>
-                        <artifactId>protobuf-java</artifactId>
-                        <version>3.21.7</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>io.grpc</groupId>
-                        <artifactId>grpc-protobuf</artifactId>
-                        <version>1.53.0</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>io.grpc</groupId>
-                        <artifactId>grpc-stub</artifactId>
-                        <version>1.53.0</version>
-                    </dependency>"
+    <groupId>com.google.protobuf</groupId>
+    <artifactId>protobuf-java</artifactId>
+    <version>3.21.7</version>
+</dependency>
+<dependency>
+    <groupId>io.grpc</groupId>
+    <artifactId>grpc-protobuf</artifactId>
+    <version>1.53.0</version>
+</dependency>
+<dependency>
+    <groupId>io.grpc</groupId>
+    <artifactId>grpc-stub</artifactId>
+    <version>1.53.0</version>
+</dependency>"
               >
                 <i class="fas fa-copy"></i> Copy
               </button>
@@ -299,6 +407,67 @@
               </button>
             </div>
           </div>
+
+          <h4>Proto File Structure for Java</h4>
+          <p>Your .proto file should include:</p>
+          <div class="code-block-container">
+            <pre class="code-block"><code>syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.example.grpc";
+option java_outer_classname = "ExampleProto";
+
+package examplepackage;  // Define the proto package
+
+// Service definition
+service ExampleService {
+  rpc ExampleMethod (ExampleRequest) returns (ExampleResponse);
+}
+
+// Message definitions
+message ExampleRequest {
+  string input = 1;
+}
+
+message ExampleResponse {
+  string output = 1;
+}</code></pre>
+            <button
+              class="copy-btn"
+              onclick="copyCode(this)"
+              data-code='syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.example.grpc";
+option java_outer_classname = "ExampleProto";
+
+package examplepackage;  // Define the proto package
+
+// Service definition
+service ExampleService {
+  rpc ExampleMethod (ExampleRequest) returns (ExampleResponse);
+}
+
+// Message definitions
+message ExampleRequest {
+  string input = 1;
+}
+
+message ExampleResponse {
+  string output = 1;
+}'
+            >
+              <i class="fas fa-copy"></i> Copy
+            </button>
+          </div>
+
+          <h4>Generated Output</h4>
+          <p>The compiler will generate:</p>
+          <ul>
+            <li>Java classes for each message type</li>
+            <li>gRPC service interfaces and stubs</li>
+            <li>Files will be generated following the Java package structure</li>
+          </ul>
         </div>
 
         <div class="tab-content" id="ruby">
@@ -330,6 +499,51 @@
                 <i class="fas fa-copy"></i> Copy
               </button>
             </div>
+          </div>
+
+          <h4>Proto File Structure for Ruby</h4>
+          <p>Your .proto file should include:</p>
+          <div class="code-block-container">
+            <pre class="code-block"><code>syntax = "proto3";
+
+package examplepackage;  // Define the proto package
+
+// Service definition
+service ExampleService {
+  rpc ExampleMethod (ExampleRequest) returns (ExampleResponse);
+}
+
+// Message definitions
+message ExampleRequest {
+  string input = 1;
+}
+
+message ExampleResponse {
+  string output = 1;
+}</code></pre>
+            <button
+              class="copy-btn"
+              onclick="copyCode(this)"
+              data-code='syntax = "proto3";
+
+package examplepackage;  // Define the proto package
+
+// Service definition
+service ExampleService {
+  rpc ExampleMethod (ExampleRequest) returns (ExampleResponse);
+}
+
+// Message definitions
+message ExampleRequest {
+  string input = 1;
+}
+
+message ExampleResponse {
+  string output = 1;
+}'
+            >
+              <i class="fas fa-copy"></i> Copy
+            </button>
           </div>
 
           <h4>Output</h4>
@@ -379,6 +593,52 @@
                 <i class="fas fa-copy"></i> Copy
               </button>
             </div>
+            <p>Make sure <code>~/.pub-cache/bin</code> is in your PATH</p>
+          </div>
+
+          <h4>Proto File Structure for Dart</h4>
+          <p>Your .proto file should include:</p>
+          <div class="code-block-container">
+            <pre class="code-block"><code>syntax = "proto3";
+
+package examplepackage;  // Define the proto package
+
+// Service definition
+service ExampleService {
+  rpc ExampleMethod (ExampleRequest) returns (ExampleResponse);
+}
+
+// Message definitions
+message ExampleRequest {
+  string input = 1;
+}
+
+message ExampleResponse {
+  string output = 1;
+}</code></pre>
+            <button
+              class="copy-btn"
+              onclick="copyCode(this)"
+              data-code='syntax = "proto3";
+
+package examplepackage;  // Define the proto package
+
+// Service definition
+service ExampleService {
+  rpc ExampleMethod (ExampleRequest) returns (ExampleResponse);
+}
+
+// Message definitions
+message ExampleRequest {
+  string input = 1;
+}
+
+message ExampleResponse {
+  string output = 1;
+}'
+            >
+              <i class="fas fa-copy"></i> Copy
+            </button>
           </div>
 
           <h4>Output</h4>
@@ -410,6 +670,13 @@
             directory as the .proto file
           </li>
         </ol>
+        
+        <h3>Known Issues</h3>
+        <ul>
+          <li>The extension requires all dependencies to be properly installed and available in the system PATH</li>
+          <li>Complex proto imports may require manual configuration</li>
+          <li>For Java compilation, a Maven or Gradle project with the required dependencies must exist in the parent directories</li>
+        </ul>
       </section>
     </div>
 
